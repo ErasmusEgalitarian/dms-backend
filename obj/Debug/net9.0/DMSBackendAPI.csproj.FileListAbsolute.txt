@@ -31,3 +31,10 @@
 /Users/visti/Documents/P2/DMSBackendAPI/obj/Debug/net9.0/DMSBackendAPI.pdb
 /Users/visti/Documents/P2/DMSBackendAPI/obj/Debug/net9.0/DMSBackendAPI.genruntimeconfig.cache
 /Users/visti/Documents/P2/DMSBackendAPI/obj/Debug/net9.0/ref/DMSBackendAPI.dll
+/Users/visti/Documents/P2/DMSBackendAPI/obj/Debug/net9.0/DMSBackendAPI.sourcelink.json
+/Users/visti/Documents/P2/DMSBackendAPI/bin/Debug/net9.0/DnsClient.dll
+/Users/visti/Documents/P2/DMSBackendAPI/bin/Debug/net9.0/MongoDB.Bson.dll
+/Users/visti/Documents/P2/DMSBackendAPI/bin/Debug/net9.0/MongoDB.Driver.dll
+/Users/visti/Documents/P2/DMSBackendAPI/bin/Debug/net9.0/SharpCompress.dll
+/Users/visti/Documents/P2/DMSBackendAPI/bin/Debug/net9.0/Snappier.dll
+/Users/visti/Documents/P2/DMSBackendAPI/bin/Debug/net9.0/ZstdSharp.dll
