@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "g/sJqD4/fNnTaA0hrFdnbH7Ucj7A4NXKeX04onBis6U=",
+  "Source": "DMSBackendAPI",
+  "BasePath": "_content/DMSBackendAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
