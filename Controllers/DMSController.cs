@@ -75,6 +75,7 @@ namespace DMS.Controllers
         [HttpPost("registerWeight")]
         public async Task<IActionResult> registerWeight([FromBody] WeightReq weightBody)
         {
+            // Authenticate with token
            var token = Request.Headers["Authorization"].ToString();
            var authentication = await AuthHelper.AuthFromToken(token);
            if (!authentication)
@@ -82,6 +83,7 @@ namespace DMS.Controllers
                 return Unauthorized();
             }
 
+            // Get datetime 
             DateTime time = DateTime.UtcNow;
 
             bool DBStatus = await DBHelper.AddWeight(weightBody.WorkerID, weightBody.Type, weightBody.Weight, weightBody.Period, time);

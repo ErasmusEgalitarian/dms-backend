@@ -2,6 +2,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using DMS.Models;
 using DMS.Secrets;
+using System.ComponentModel;
 
 // TODO: Generate token
 // TODO: Auth by token
@@ -38,11 +39,52 @@ namespace DMS.Utils
             await Task.Delay(1000);
             return creds;
         }
+        public static async Task<bool> AddToken(string username, string token) 
+        {
+            var collection = database.GetCollection<BsonDocument>("tokens");
+
+            // Create new token user pair in db
+            var tokenEntry = new BsonDocument
+            {
+                { "user", username},
+                { "token", token},
+                { "time", DateTime.UtcNow}
+            };
+
+            // Insert log entry into the database
+            try 
+            {
+                collection.InsertOne(tokenEntry);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+
+        }
         public static async Task<string> Token2ID(string token)
         {
-            // Simulate a database query
-            await Task.Delay(1000);
-            return "PLACEHOLDER_ID";
+            // Select db
+            var collection = database.GetCollection<BsonDocument>("tokens");
+
+            // Create query and execute
+            var filter = Builders<BsonDocument>.Filter.Eq("token", token);
+            Console.WriteLine(token);
+            var result = await collection.Find(filter).FirstOrDefaultAsync();
+            Console.WriteLine(result);
+            
+
+            // Return user if found
+            if (result != null)
+            {
+                return result["user"].AsString;
+            }
+            else
+            {
+                return String.Empty;
+            }
+
         }
         // Add status to database
         public static async Task<bool> AddStatus(string scaleID, string firmwareVersion, DateTime time)
@@ -110,12 +152,19 @@ namespace DMS.Utils
             var creds = await DBHelper.ReturnLogin(username, password);
             if (username == creds.Username && password == creds.Password)
             {
-                // Simulate token generation
-                authResponse.Token = "PLACEHOLDER_TOKEN";
+                // Generate uuid as token
+                string token = Guid.NewGuid().ToString();
+                authResponse.Token = token;
+
+                // Add tokenpair to database
+                await DBHelper.AddToken(username, token);
+
+                // Update response message to correct response
                 authResponse.Message = "Login successful";
             }
             else
             {
+                // Update response message to correct response
                 authResponse.Message = "Login failed";
             }
             return authResponse;
@@ -124,10 +173,12 @@ namespace DMS.Utils
         // Authenticate with token
         public static async Task<bool> AuthFromToken(string token)
         {
-            // Simulate token authentication
-            await Task.Delay(1000);
+            // Retrive user from token
+            string tokenValidity = await DBHelper.Token2ID(token);
 
-            if (token != "PLACEHOLDER_TOKEN")
+
+            // If no user found then auth failed
+            if (tokenValidity == String.Empty)
             {
                 return false;
             }
