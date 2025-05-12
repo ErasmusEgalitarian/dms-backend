@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/visti/Documents/P2/DMSBackendAPI/DMSBackendAPI.csproj": {}
+    "/Users/visti/Documents/P2/DMSBackendApi/DMSBackendAPI.csproj": {}
   },
   "projects": {
-    "/Users/visti/Documents/P2/DMSBackendAPI/DMSBackendAPI.csproj": {
+    "/Users/visti/Documents/P2/DMSBackendApi/DMSBackendAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/visti/Documents/P2/DMSBackendAPI/DMSBackendAPI.csproj",
+        "projectUniqueName": "/Users/visti/Documents/P2/DMSBackendApi/DMSBackendAPI.csproj",
         "projectName": "DMSBackendAPI",
-        "projectPath": "/Users/visti/Documents/P2/DMSBackendAPI/DMSBackendAPI.csproj",
+        "projectPath": "/Users/visti/Documents/P2/DMSBackendApi/DMSBackendAPI.csproj",
         "packagesPath": "/Users/visti/.nuget/packages/",
-        "outputPath": "/Users/visti/Documents/P2/DMSBackendAPI/obj/",
+        "outputPath": "/Users/visti/Documents/P2/DMSBackendApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/visti/.nuget/NuGet/NuGet.Config"

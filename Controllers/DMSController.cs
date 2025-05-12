@@ -18,7 +18,6 @@ namespace DMS.Controllers
         [HttpGet("helloworld")]
         public async Task<IActionResult> helloworld()
         {
-            DBHelper.TestFunc();
             return Ok();
         }
 
@@ -58,14 +57,47 @@ namespace DMS.Controllers
             DateTime time = DateTime.UtcNow;
 
             // Add status to the database
-            await DBHelper.AddStatus(scaleId, status.Version, time);
-
+            bool DBStatus = await DBHelper.AddStatus(scaleId, status.Version, time);
 
             // Craft and send response
             var response = new DefaultResponse(); 
-            response.Message = "Status added";
+            if (DBStatus == true)
+            {
+                response.Message = "Status added";
+                return Ok(response);
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+        }
 
-            return Ok(response);
+        [HttpPost("registerWeight")]
+        public async Task<IActionResult> registerWeight([FromBody] WeightReq weightBody)
+        {
+           var token = Request.Headers["Authorization"].ToString();
+           var authentication = await AuthHelper.AuthFromToken(token);
+           if (!authentication)
+            {
+                return Unauthorized();
+            }
+
+            DateTime time = DateTime.UtcNow;
+
+            bool DBStatus = await DBHelper.AddWeight(weightBody.WorkerID, weightBody.Type, weightBody.Weight, weightBody.Period, time);
+
+            // Craft and send response
+            var response = new DefaultResponse(); 
+            if (DBStatus == true)
+            {
+                response.Message = "Weight registered";
+                return Ok(response);
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+
         }
     }
 }

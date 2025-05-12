@@ -18,4 +18,12 @@ namespace DMS.Models
     {
         public string Version { get; set; } = string.Empty;
     }
+    public class WeightReq
+    {
+        public float Weight { get; set; } = 0.0f;
+        public int Type { get; set; } = 0;
+        public string WorkerID { get; set; } = string.Empty;
+        public string Period { get; set; } = string.Empty;
+        public DateTime Date { get; set; } = DateTime.Now;
+    }
 }

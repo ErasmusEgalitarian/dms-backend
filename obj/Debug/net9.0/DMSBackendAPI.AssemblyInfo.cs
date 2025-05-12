@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DMSBackendAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b42c5bb9dc58bf8dff561e107ccba9caea1f245c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ade44c442ae16a9822bf371fa4394fe5db5c80e1")]
 [assembly: System.Reflection.AssemblyProductAttribute("DMSBackendAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DMSBackendAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

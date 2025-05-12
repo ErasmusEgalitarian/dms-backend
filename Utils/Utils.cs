@@ -58,9 +58,43 @@ namespace DMS.Utils
             };
 
             // Insert log entry into the database
-            collection.InsertOne(scaleLog);
+            try 
+            {
+                collection.InsertOne(scaleLog);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
+        // Add weight to worker_contributions table
+        public static async Task<bool> AddWeight(string workerID, int type, float weight, string period, DateTime time) 
+        {
+         var collection = database.GetCollection<BsonDocument>("worker_contributions");
 
-            return true;
+            // Create new log entry
+            var weightEntry = new BsonDocument
+            {
+                { "worker_id", workerID},
+                { "material_id", type },
+                { "contribution", weight},
+                {"period", period},
+                {"last_updated", time}
+            };
+
+
+            // Insert log entry into the database
+            try 
+            {
+                collection.InsertOne(weightEntry);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }            
+
         }
     }
 

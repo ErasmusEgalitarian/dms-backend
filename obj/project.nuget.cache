@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mqzNS98iIe4=",
+  "dgSpecHash": "2mIeaE6Yb0Q=",
   "success": true,
-  "projectFilePath": "/Users/visti/Documents/P2/DMSBackendAPI/DMSBackendAPI.csproj",
+  "projectFilePath": "/Users/visti/Documents/P2/DMSBackendApi/DMSBackendAPI.csproj",
   "expectedPackageFiles": [
     "/Users/visti/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
     "/Users/visti/.nuget/packages/microsoft.aspnetcore.openapi/9.0.4/microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512",
