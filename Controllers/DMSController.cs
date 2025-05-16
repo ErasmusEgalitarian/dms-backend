@@ -101,5 +101,31 @@ namespace DMS.Controllers
             }
 
         }
+        [HttpGet("getStatus/{scaleID}")]
+        public async Task<IActionResult> GetStatus(string scaleID)
+        {
+            // Authenticate with token
+            var token = Request.Headers["Authorization"].ToString();
+            var authentication = await AuthHelper.AuthFromToken(token);
+            if (authentication)
+            {
+                return Unauthorized();
+            }
+
+            // Get status from the database
+            var status = await DBHelper.GetStatus(scaleID);
+            
+            
+            // Craft and send response
+            if (status.Count > 0)
+            {
+                return Ok(status);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
     }
 }

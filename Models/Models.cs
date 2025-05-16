@@ -26,4 +26,10 @@ namespace DMS.Models
         public string Period { get; set; } = string.Empty;
         public DateTime Date { get; set; } = DateTime.Now;
     }
+    public class StatusResponse
+    {
+        public string ScaleID { get; set; } = string.Empty;
+        public string Version { get; set; } = string.Empty;
+        public DateTime LastUpdated { get; set; } = DateTime.Now;
+    }
 }

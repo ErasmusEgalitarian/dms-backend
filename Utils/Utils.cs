@@ -39,7 +39,7 @@ namespace DMS.Utils
             await Task.Delay(1000);
             return creds;
         }
-        public static async Task<bool> AddToken(string username, string token) 
+        public static async Task<bool> AddToken(string username, string token)
         {
             var collection = database.GetCollection<BsonDocument>("tokens");
 
@@ -52,12 +52,12 @@ namespace DMS.Utils
             };
 
             // Insert log entry into the database
-            try 
+            try
             {
                 collection.InsertOne(tokenEntry);
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -73,7 +73,7 @@ namespace DMS.Utils
             Console.WriteLine(token);
             var result = await collection.Find(filter).FirstOrDefaultAsync();
             Console.WriteLine(result);
-            
+
 
             // Return user if found
             if (result != null)
@@ -86,6 +86,36 @@ namespace DMS.Utils
             }
 
         }
+
+        public static async Task<List<StatusResponse>> GetStatus(string scaleID)
+        {
+            // Select db
+            var collection = database.GetCollection<BsonDocument>("scale_logs");
+
+            // Create query and execute
+            var filter = Builders<BsonDocument>.Filter.Eq("scaleID", scaleID);
+
+            // Get first 20 results
+            var results = await collection.Find(filter).Limit(20).ToListAsync();
+
+            // Convert BSONDocument to StatusResponse list
+            var statusList = new List<StatusResponse>();
+
+            foreach (var result in results)
+            {
+                var status = new StatusResponse
+                {
+                    ScaleID = result["scaleID"].AsString,
+                    Version = result["firmwareVersion"].AsString,
+                    LastUpdated = result["time"].ToUniversalTime()
+                };
+
+                statusList.Add(status);
+            }
+
+            return statusList;
+        }
+
         // Add status to database
         public static async Task<bool> AddStatus(string scaleID, string firmwareVersion, DateTime time)
         {
@@ -100,20 +130,20 @@ namespace DMS.Utils
             };
 
             // Insert log entry into the database
-            try 
+            try
             {
                 collection.InsertOne(scaleLog);
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
         }
         // Add weight to worker_contributions table
-        public static async Task<bool> AddWeight(string workerID, int type, float weight, string period, DateTime time) 
+        public static async Task<bool> AddWeight(string workerID, int type, float weight, string period, DateTime time)
         {
-         var collection = database.GetCollection<BsonDocument>("worker_contributions");
+            var collection = database.GetCollection<BsonDocument>("worker_contributions");
 
             // Create new log entry
             var weightEntry = new BsonDocument
@@ -127,15 +157,15 @@ namespace DMS.Utils
 
 
             // Insert log entry into the database
-            try 
+            try
             {
                 collection.InsertOne(weightEntry);
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
-            }            
+            }
 
         }
     }
@@ -187,5 +217,6 @@ namespace DMS.Utils
                 return true;
             }
         }
+
     }
 }

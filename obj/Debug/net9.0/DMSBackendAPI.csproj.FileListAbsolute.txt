@@ -38,3 +38,43 @@
 /Users/visti/Documents/P2/DMSBackendAPI/bin/Debug/net9.0/SharpCompress.dll
 /Users/visti/Documents/P2/DMSBackendAPI/bin/Debug/net9.0/Snappier.dll
 /Users/visti/Documents/P2/DMSBackendAPI/bin/Debug/net9.0/ZstdSharp.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.csproj.AssemblyReference.cache
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.GeneratedMSBuildEditorConfig.editorconfig
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.AssemblyInfoInputs.cache
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.AssemblyInfo.cs
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.csproj.CoreCompileInputs.cache
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.MvcApplicationPartsAssemblyInfo.cs
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.MvcApplicationPartsAssemblyInfo.cache
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.sourcelink.json
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/refint/DMSBackendAPI.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.pdb
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/appsettings.Development.json
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/appsettings.json
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/DMSBackendAPI.staticwebassets.endpoints.json
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/DMSBackendAPI
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/DMSBackendAPI.deps.json
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/DMSBackendAPI.runtimeconfig.json
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/DMSBackendAPI.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/DMSBackendAPI.pdb
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/DnsClient.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/Microsoft.AspNetCore.OpenApi.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/Microsoft.OpenApi.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/MongoDB.Bson.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/MongoDB.Driver.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/SharpCompress.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/Snappier.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/bin/Debug/net9.0/ZstdSharp.dll
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/scopedcss/bundle/DMSBackendAPI.styles.css
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/staticwebassets.build.json
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/staticwebassets.development.json
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/staticwebassets/msbuild.DMSBackendAPI.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/staticwebassets/msbuild.DMSBackendAPI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/staticwebassets/msbuild.build.DMSBackendAPI.props
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.DMSBackendAPI.props
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.DMSBackendAPI.props
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/staticwebassets.pack.json
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBacke.34A8CA92.Up2Date
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/DMSBackendAPI.genruntimeconfig.cache
+/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/Debug/net9.0/ref/DMSBackendAPI.dll

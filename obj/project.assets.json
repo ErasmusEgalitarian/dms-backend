@@ -663,25 +663,24 @@
     ]
   },
   "packageFolders": {
-    "/Users/visti/.nuget/packages/": {}
+    "/Users/undervand/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/visti/Documents/P2/DMSBackendAPI/DMSBackendAPI.csproj",
+      "projectUniqueName": "/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/DMSBackendAPI.csproj",
       "projectName": "DMSBackendAPI",
-      "projectPath": "/Users/visti/Documents/P2/DMSBackendAPI/DMSBackendAPI.csproj",
-      "packagesPath": "/Users/visti/.nuget/packages/",
-      "outputPath": "/Users/visti/Documents/P2/DMSBackendAPI/obj/",
+      "projectPath": "/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/DMSBackendAPI.csproj",
+      "packagesPath": "/Users/undervand/.nuget/packages/",
+      "outputPath": "/Users/undervand/Desktop/Desktop - Phitchayanin’s MacBook Pro/P2/dms-backend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/visti/.nuget/NuGet/NuGet.Config"
+        "/Users/undervand/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "/opt/homebrew/Cellar/dotnet/9.0.4/libexec/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -734,7 +733,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/9.0.4/libexec/sdk/9.0.105/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
