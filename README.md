@@ -10,7 +10,7 @@ namespace DMS.Secrets
     public static class Secrets
     {
         public static string DBUsername = "<Your DB username>";
-        public static string DBPassword = "<Your DB password>"
+        public static string DBPassword = "<Your DB password>";
     }
 }
 
