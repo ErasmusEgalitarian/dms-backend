@@ -52,7 +52,7 @@ namespace DMS.Controllers
 
             // Get scale ID from token
             string scaleId = await DBHelper.Token2ID(token);
-                        
+
             // Get datetime
             DateTime time = DateTime.UtcNow;
 
@@ -140,8 +140,8 @@ namespace DMS.Controllers
             // Get status from the database
             var status = await Helpers.GetUpDownStatus(scaleID);
 
+            // Create and send response
             var response = new DefaultResponse();
-
             if (status)
             {
                 response.Message = "Up";
@@ -153,6 +153,23 @@ namespace DMS.Controllers
 
             return Ok(response);
         }
+        [HttpGet("getScaleVersion/{scaleID}")]
+        public async Task<IActionResult> GetScaleVersion(string scaleID)
+        {
+            // Get scale version from ID
+            var version = await Helpers.GetScaleVersion(scaleID);
 
+            // Create and response
+            var response = new DefaultResponse();
+            if (version != string.Empty)
+            {
+                response.Message = version;
+            }
+            else
+            {
+                return NotFound();
+            }
+            return Ok(response);
+        }
     }
 }

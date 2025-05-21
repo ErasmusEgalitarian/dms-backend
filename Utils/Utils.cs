@@ -4,6 +4,7 @@ using DMS.Models;
 using DMS.Secrets;
 using System.ComponentModel;
 using System.ComponentModel.Design;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 // TODO: Database for login
 
@@ -242,10 +243,30 @@ namespace DMS.Utils
                 }
 
             }
-            catch 
+            // No elements found means scale not found
+            catch
             {
                 return false;
             }
+        }
+
+        public static async Task<string> GetScaleVersion(string scaleID)
+        {
+            // Get latest status messages of scale 
+            var statusList = await DBHelper.GetStatus(scaleID, 1);
+            try
+            {
+                // Choose latest element of list
+                var status = statusList[0];
+
+                // return version number
+                return status.Version;
+            }
+            catch
+            {
+                return string.Empty;
+            }
+
         }
     }
 }
