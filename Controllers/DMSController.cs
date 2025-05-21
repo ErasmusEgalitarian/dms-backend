@@ -156,6 +156,14 @@ namespace DMS.Controllers
         [HttpGet("getScaleVersion/{scaleID}")]
         public async Task<IActionResult> GetScaleVersion(string scaleID)
         {
+            // Authenticate with token
+            var token = Request.Headers["Authorization"].ToString();
+            var authentication = await AuthHelper.AuthFromToken(token);
+            if (!authentication)
+            {
+                return Unauthorized();
+            }
+            
             // Get scale version from ID
             var version = await Helpers.GetScaleVersion(scaleID);
 
