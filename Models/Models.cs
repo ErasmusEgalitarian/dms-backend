@@ -30,6 +30,6 @@ namespace DMS.Models
     {
         public string ScaleID { get; set; } = string.Empty;
         public string Version { get; set; } = string.Empty;
-        public DateTime LastUpdated { get; set; } = DateTime.Now;
+        public DateTime time { get; set; } = DateTime.Now;
     }
 }

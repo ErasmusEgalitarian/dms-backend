@@ -3,9 +3,8 @@ using MongoDB.Driver;
 using DMS.Models;
 using DMS.Secrets;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 
-// TODO: Generate token
-// TODO: Auth by token
 // TODO: Database for login
 
 namespace DMS.Utils
@@ -43,6 +42,7 @@ namespace DMS.Utils
         {
             var collection = database.GetCollection<BsonDocument>("tokens");
 
+
             // Create new token user pair in db
             var tokenEntry = new BsonDocument
             {
@@ -70,9 +70,7 @@ namespace DMS.Utils
 
             // Create query and execute
             var filter = Builders<BsonDocument>.Filter.Eq("token", token);
-            Console.WriteLine(token);
             var result = await collection.Find(filter).FirstOrDefaultAsync();
-            Console.WriteLine(result);
 
 
             // Return user if found
@@ -87,7 +85,7 @@ namespace DMS.Utils
 
         }
 
-        public static async Task<List<StatusResponse>> GetStatus(string scaleID)
+        public static async Task<List<StatusResponse>> GetStatus(string scaleID, int amount = 100)
         {
             // Select db
             var collection = database.GetCollection<BsonDocument>("scale_logs");
@@ -95,8 +93,8 @@ namespace DMS.Utils
             // Create query and execute
             var filter = Builders<BsonDocument>.Filter.Eq("scaleID", scaleID);
 
-            // Get first 20 results
-            var results = await collection.Find(filter).Limit(20).ToListAsync();
+            // Get first {amount} results
+            var results = await collection.Find(filter).SortByDescending(doc => doc["_id"]).Limit(amount).ToListAsync();
 
             // Convert BSONDocument to StatusResponse list
             var statusList = new List<StatusResponse>();
@@ -107,7 +105,7 @@ namespace DMS.Utils
                 {
                     ScaleID = result["scaleID"].AsString,
                     Version = result["firmwareVersion"].AsString,
-                    LastUpdated = result["time"].ToUniversalTime()
+                    time = result["time"].ToLocalTime()
                 };
 
                 statusList.Add(status);
@@ -120,6 +118,7 @@ namespace DMS.Utils
         public static async Task<bool> AddStatus(string scaleID, string firmwareVersion, DateTime time)
         {
             var collection = database.GetCollection<BsonDocument>("scale_logs");
+
 
             // Create new log entry
             var scaleLog = new BsonDocument
@@ -168,6 +167,8 @@ namespace DMS.Utils
             }
 
         }
+
+
     }
 
     public static class AuthHelper
@@ -218,5 +219,33 @@ namespace DMS.Utils
             }
         }
 
+    }
+
+    public static class Helpers
+    {
+        public static async Task<bool> GetUpDownStatus(string scaleID)
+        {
+            // Get latest status messages of scale 
+            var statusList = await DBHelper.GetStatus(scaleID, 1);
+            try
+            {
+                // Choose latest element of list
+                var status = statusList[0];
+                // If no status message was recived within the last 5 minutes, the scale is down
+                if ((DateTime.Now - status.time).TotalMinutes < 5)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch 
+            {
+                return false;
+            }
+        }
     }
 }

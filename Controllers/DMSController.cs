@@ -18,7 +18,7 @@ namespace DMS.Controllers
         [HttpGet("helloworld")]
         public async Task<IActionResult> helloworld()
         {
-            return Ok();
+            return Ok("Hello World");
         }
 
         [HttpPost("login")]
@@ -51,8 +51,8 @@ namespace DMS.Controllers
 
 
             // Get scale ID from token
-            string scaleId = await DBHelper.Token2ID("PLACEHOLDER_TOKEN");
-
+            string scaleId = await DBHelper.Token2ID(token);
+                        
             // Get datetime
             DateTime time = DateTime.UtcNow;
 
@@ -60,7 +60,7 @@ namespace DMS.Controllers
             bool DBStatus = await DBHelper.AddStatus(scaleId, status.Version, time);
 
             // Craft and send response
-            var response = new DefaultResponse(); 
+            var response = new DefaultResponse();
             if (DBStatus == true)
             {
                 response.Message = "Status added";
@@ -76,9 +76,9 @@ namespace DMS.Controllers
         public async Task<IActionResult> registerWeight([FromBody] WeightReq weightBody)
         {
             // Authenticate with token
-           var token = Request.Headers["Authorization"].ToString();
-           var authentication = await AuthHelper.AuthFromToken(token);
-           if (!authentication)
+            var token = Request.Headers["Authorization"].ToString();
+            var authentication = await AuthHelper.AuthFromToken(token);
+            if (!authentication)
             {
                 return Unauthorized();
             }
@@ -89,7 +89,7 @@ namespace DMS.Controllers
             bool DBStatus = await DBHelper.AddWeight(weightBody.WorkerID, weightBody.Type, weightBody.Weight, weightBody.Period, time);
 
             // Craft and send response
-            var response = new DefaultResponse(); 
+            var response = new DefaultResponse();
             if (DBStatus == true)
             {
                 response.Message = "Weight registered";
@@ -107,15 +107,15 @@ namespace DMS.Controllers
             // Authenticate with token
             var token = Request.Headers["Authorization"].ToString();
             var authentication = await AuthHelper.AuthFromToken(token);
-            if (authentication)
+            if (!authentication)
             {
                 return Unauthorized();
             }
 
             // Get status from the database
             var status = await DBHelper.GetStatus(scaleID);
-            
-            
+
+
             // Craft and send response
             if (status.Count > 0)
             {
@@ -125,6 +125,33 @@ namespace DMS.Controllers
             {
                 return NotFound();
             }
+        }
+        [HttpGet("getUpDown/{scaleID}")]
+        public async Task<IActionResult> GetUpDown(string scaleID)
+        {
+            // Authenticate with token
+            var token = Request.Headers["Authorization"].ToString();
+            var authentication = await AuthHelper.AuthFromToken(token);
+            if (!authentication)
+            {
+                return Unauthorized();
+            }
+
+            // Get status from the database
+            var status = await Helpers.GetUpDownStatus(scaleID);
+
+            var response = new DefaultResponse();
+
+            if (status)
+            {
+                response.Message = "Up";
+            }
+            else
+            {
+                response.Message = "Down";
+            }
+
+            return Ok(response);
         }
 
     }
