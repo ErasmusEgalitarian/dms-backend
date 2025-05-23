@@ -14,7 +14,7 @@ namespace DMS.Models
         public string Token { get; set; } = string.Empty;
         public string Message { get; set; } = string.Empty;
     }
-    public class Status 
+    public class Status
     {
         public string Version { get; set; } = string.Empty;
     }
@@ -31,5 +31,10 @@ namespace DMS.Models
         public string ScaleID { get; set; } = string.Empty;
         public string Version { get; set; } = string.Empty;
         public DateTime time { get; set; } = DateTime.Now;
+    }
+    public class StatusAddResponse
+    {
+        public string Message { get; set; } = string.Empty;
+        public string Path { get; set; } = string.Empty;
     }
 }

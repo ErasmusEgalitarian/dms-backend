@@ -60,10 +60,21 @@ namespace DMS.Controllers
             bool DBStatus = await DBHelper.AddStatus(scaleId, status.Version, time);
 
             // Craft and send response
-            var response = new DefaultResponse();
+            var response = new StatusAddResponse();
             if (DBStatus == true)
             {
-                response.Message = "Status added";
+                // If scale dosen't have the newest firmware version tell it where to get it
+                Dictionary<string, string> version = await DBHelper.GetNewestVersion();
+                if (status.Version != version["version"])
+                {
+                    response.Message = "out of date";
+                    response.Path = version["path"];
+                }
+                // Just confirme status added 
+                else
+                {
+                    response.Message = "Status added";
+                }
                 return Ok(response);
             }
             else
@@ -163,7 +174,7 @@ namespace DMS.Controllers
             {
                 return Unauthorized();
             }
-            
+
             // Get scale version from ID
             var version = await Helpers.GetScaleVersion(scaleID);
 

@@ -168,6 +168,55 @@ namespace DMS.Utils
             }
 
         }
+        
+        public static async Task<Dictionary<string, string>> GetNewestVersion()
+        {
+            // Select db
+            var collection = database.GetCollection<BsonDocument>("firmwareVersions");
+
+            // Get first {amount} results
+            var results = await collection.Find(new BsonDocument()).SortByDescending(doc => doc["_id"]).Limit(1).ToListAsync();
+
+            // Select latest result
+            var result = results[0];
+
+
+            // Craft response dict of version and path of firmware in firmware store
+            var responseDict = new Dictionary<string, string>
+            {
+                {"version", result.GetValue("version").AsString },
+                { "path", result.GetValue("path").AsString}
+            };
+            return responseDict;
+        }
+        
+        public static async Task<bool> AddFirmware(string firmware)
+        {
+            // Select db
+            var collection = database.GetCollection<BsonDocument>("firmwareVersions");
+
+            // Get current time
+            DateTime time = DateTime.Now;
+
+            // Create new log entry
+            var firmwareLog = new BsonDocument
+            {
+                { "version", firmware},
+                { "path", $"/firmware/firmware_{firmware}.bin" },
+                { "time", time }
+            };
+
+            // Insert log entry into the database
+            try
+            {
+                collection.InsertOne(firmwareLog);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
 
     }
