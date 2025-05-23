@@ -15,6 +15,7 @@ namespace DMS.Utils
         private static MongoClient _client;
         private static IMongoDatabase database;
 
+        private static string firmwareDomain = "http://vistimalik.com:8000";
         public static void ConnectToDB()
         {
             // Connection string to MongoDB Atlas
@@ -202,7 +203,7 @@ namespace DMS.Utils
             var firmwareLog = new BsonDocument
             {
                 { "version", firmware},
-                { "path", $"/firmware/firmware_{firmware}.bin" },
+                { "path", $"{firmwareDomain}/firmware_{firmware}.bin" },
                 { "time", time }
             };
 
