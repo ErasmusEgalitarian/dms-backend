@@ -26,19 +26,53 @@ namespace DMS.Utils
             database = _client.GetDatabase("DMS");
         }
 
-        // Login query 
-        public static async Task<UserCreds> ReturnLogin(string username, string password)
+        public static async Task<bool> HELPME()
         {
-            // Placeholder 
-            var creds = new UserCreds
+            var collection = database.GetCollection<BsonDocument>("users");
+
+
+            // Create new token user pair in db
+            var tokenEntry = new BsonDocument
             {
-                Username = "wasteworker",
-                Password = "verysecretpassword"
+                { "username", "wasteworker"},
+                { "password", "verysecretpassword"},
+                { "type", 0}
             };
 
-            // Simulate a database query
-            await Task.Delay(1000);
-            return creds;
+            // Insert log entry into the database
+            try
+            {
+                collection.InsertOne(tokenEntry);
+                Console.WriteLine("Added user");
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // Login query 
+        public static async Task<UserCreds> ReturnLogin(string username)
+        {
+
+            // Select db
+            var collection = database.GetCollection<BsonDocument>("users");
+
+            // Create query and execute
+            var filter = Builders<BsonDocument>.Filter.Eq("username", username);
+            var result = await collection.Find(filter).FirstOrDefaultAsync();
+
+            var user = new UserCreds();
+
+            // Return user if found
+            if (result != null)
+            {
+                user.Username = result["username"].AsString;
+                user.Password = result["password"].AsString;
+            }
+
+            return user;
         }
         public static async Task<bool> AddToken(string username, string token)
         {
@@ -169,7 +203,7 @@ namespace DMS.Utils
             }
 
         }
-        
+
         public static async Task<Dictionary<string, string>> GetNewestVersion()
         {
             // Select db
@@ -190,7 +224,7 @@ namespace DMS.Utils
             };
             return responseDict;
         }
-        
+
         public static async Task<bool> AddFirmware(string version, string fileName)
         {
             // Select db
@@ -231,7 +265,7 @@ namespace DMS.Utils
             var authResponse = new LoginResponse();
 
             // Auth with database
-            var creds = await DBHelper.ReturnLogin(username, password);
+            var creds = await DBHelper.ReturnLogin(username);
             if (username == creds.Username && password == creds.Password)
             {
                 // Generate uuid as token
