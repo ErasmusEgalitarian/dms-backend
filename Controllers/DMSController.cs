@@ -18,7 +18,6 @@ namespace DMS.Controllers
         [HttpGet("helloworld")]
         public async Task<IActionResult> helloworld()
         {
-            await DBHelper.AddFirmware("1.0.1", "1.0.1");
             return Ok("Hello World");
 
         }
