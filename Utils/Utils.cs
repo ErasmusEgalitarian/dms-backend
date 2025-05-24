@@ -191,7 +191,7 @@ namespace DMS.Utils
             return responseDict;
         }
         
-        public static async Task<bool> AddFirmware(string firmware)
+        public static async Task<bool> AddFirmware(string version, string fileName)
         {
             // Select db
             var collection = database.GetCollection<BsonDocument>("firmwareVersions");
@@ -202,8 +202,8 @@ namespace DMS.Utils
             // Create new log entry
             var firmwareLog = new BsonDocument
             {
-                { "version", firmware},
-                { "path", $"{firmwareDomain}/firmware_{firmware}.bin" },
+                { "version", version},
+                { "path", $"http://vistimalik.com:8000/{fileName}" },
                 { "time", time }
             };
 

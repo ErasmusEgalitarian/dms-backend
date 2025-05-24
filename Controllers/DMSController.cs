@@ -18,7 +18,9 @@ namespace DMS.Controllers
         [HttpGet("helloworld")]
         public async Task<IActionResult> helloworld()
         {
+            await DBHelper.AddFirmware("1.0.1", "1.0.1");
             return Ok("Hello World");
+
         }
 
         [HttpPost("login")]
@@ -189,6 +191,39 @@ namespace DMS.Controllers
                 return NotFound();
             }
             return Ok(response);
+        }
+        [HttpPost("uploadFirmware")]
+        public async Task<IActionResult> uploadFirmware()
+        {
+            // Authenticate with token
+            var token = Request.Headers["Authorization"].ToString();
+            var authentication = await AuthHelper.AuthFromToken(token);
+            if (!authentication)
+            {
+                return Unauthorized();
+            }
+
+            // Get newest version
+            string version = (await DBHelper.GetNewestVersion())["version"];
+
+            // Craft new version string
+            var versionParts = version.Split('.');
+            int lastPart = int.Parse(versionParts[^1]) + 1;
+            string newVersion = $"{versionParts[0]}.{versionParts[1]}.{lastPart.ToString()}";
+            string fileName = $"firmware_{newVersion}.bin";
+
+            // Update firmware database
+            await DBHelper.AddFirmware(newVersion, fileName);
+
+
+            // Store firmware binary file 
+            string path = $"./firmware/{fileName}";
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                await Request.Body.CopyToAsync(fileStream);
+            }
+
+            return Ok();
         }
     }
 }
